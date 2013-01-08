@@ -13,7 +13,7 @@ class WorkbenchMakeCommand extends Command {
 	 *
 	 * @var string
 	 */
-	protected $name = 'workbench:make';
+	protected $name = 'workbench';
 
 	/**
 	 * The console command description.
@@ -53,7 +53,14 @@ class WorkbenchMakeCommand extends Command {
 
 		$this->info('Creating workbench...');
 
-		$this->creator->create($package, $this->laravel['path.base'].'/workbench');
+		$path = $this->laravel['path.base'].'/workbench';
+
+		// A "plain" package simply does not contain the "views", "config" or any other
+		// Laravel intended directories. Plain packages don't contain those types of
+		// directories as they are primarily just plain libraries for consumption.
+		$plain = $this->input->getOption('plain');
+
+		$this->creator->create($package, $path, $plain);
 
 		$this->info('Package workbench created!');
 	}
@@ -74,6 +81,18 @@ class WorkbenchMakeCommand extends Command {
 		$email = $this->ask('What is your e-mail address?');
 
 		return new Package($vendor, $name, $author, $email);
+	}
+
+	/**
+	 * Get the console command options.
+	 *
+	 * @return array
+	 */
+	protected function getOptions()
+	{
+		return array(
+			array('plain', null, InputOption::VALUE_NONE, 'Skip creation of Laravel specific directories'),
+		);
 	}
 
 }

@@ -12,6 +12,17 @@ class PackageCreator {
 	protected $files;
 
 	/**
+	 * The basic building blocks of the package.
+	 *
+	 * @param  array
+	 */
+	protected $basicBlocks = array(
+		'SupportFiles',
+		'TestDirectory',
+		'ServiceProvider'
+	);
+
+	/**
 	 * The building blocks of the package.
 	 *
 	 * @param  array
@@ -39,13 +50,16 @@ class PackageCreator {
 	 *
 	 * @param  Illuminate\Workbench\Package  $package
 	 * @param  string  $path
+	 * @param  bool    $plain
 	 * @return void
 	 */
-	public function create(Package $package, $path)
+	public function create(Package $package, $path, $plain = false)
 	{
 		$directory = $this->createDirectory($package, $path);
 
-		foreach ($this->blocks as $block)
+		$blocks = $plain ? $this->basicBlocks : $this->blocks;
+
+		foreach ($blocks as $block)
 		{
 			$this->{"write{$block}"}($package, $directory);
 		}
@@ -138,6 +152,8 @@ class PackageCreator {
 	public function writeTestDirectory(Package $package, $directory)
 	{
 		$this->files->makeDirectory($directory.'/tests');
+
+		$this->files->put($directory.'/tests/.gitkeep', '');
 	}
 
 	/**
@@ -194,11 +210,11 @@ class PackageCreator {
 	 */
 	protected function formatPackageStub($stub, Package $package)
 	{
+		// When replacing values in the stub, we can just take the object vars of
+		// the package and snake case them. This should give us the array with
+		// all the necessary replacements variables present and ready to go.
 		foreach (get_object_vars($package) as $key => $value)
 		{
-			// When replacing values in the stub, we can just take the object vars of
-			// the package and snake case them. This should give us the array with
-			// all the necessary replacements variables present and ready to go.
 			$key = '{{'.snake_case($key).'}}';
 
 			$stub = str_replace($key, $value, $stub);
