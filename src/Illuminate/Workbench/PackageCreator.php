@@ -194,14 +194,17 @@ class PackageCreator {
 	 */
 	protected function formatPackageStub($stub, Package $package)
 	{
-		// When replacing values in the stub, we can just take the object vars of
-		// the package and snake case them. This should give us the array with
-		// all the necessary replacements variables present and ready to go.
-		$p = get_object_vars($package);
+		foreach (get_object_vars($package) as $key => $value)
+		{
+			// When replacing values in the stub, we can just take the object vars of
+			// the package and snake case them. This should give us the array with
+			// all the necessary replacements variables present and ready to go.
+			$key = '{{'.snake_case($key).'}}';
 
-		$r = array_map(function($v) { return '{{'.snake_case($v).'}}'; }, $p);
-
-		return strtr($stub, $r);
+			$stub = str_replace($key, $value, $stub);
+		}
+		
+		return $stub;
 	}
 
 	/**

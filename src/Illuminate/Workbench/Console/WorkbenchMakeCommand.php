@@ -49,9 +49,13 @@ class WorkbenchMakeCommand extends Command {
 	 */
 	public function fire()
 	{
-		$path = $this->laravel['path.base'].'/workbench';
+		$package = $this->buildPackage();
 
-		$this->creator->create($this->buildPackage(), $path);
+		$this->info('Creating workbench...');
+
+		$this->creator->create($package, $this->laravel['path.base'].'/workbench');
+
+		$this->info('Package workbench created!');
 	}
 
 	/**
