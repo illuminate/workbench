@@ -91,7 +91,7 @@ class WorkbenchMakeCommand extends Command {
 	protected function getOptions()
 	{
 		return array(
-			array('plain', null, InputOption::VALUE_NONE, 'Skip creation of Laravel specific directories'),
+			array('plain', null, InputOption::VALUE_NONE, 'Skip creation of Laravel specific directories.'),
 		);
 	}
 
