@@ -22,7 +22,7 @@ class Starter {
 
 		foreach ($autoloads as $file)
 		{
-			$this->files->require($file->getRealPath());
+			$files->require($file->getRealPath());
 		}
 	}
 
