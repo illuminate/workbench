@@ -9,7 +9,8 @@
     ],
     "require": {
         "illuminate/filesystem": "1.2.*",
-        "illuminate/support": "1.2.*"
+        "illuminate/support": "1.2.*",
+        "symfony/finder": "2.2.*"
     },
     "require-dev": {
         "illuminate/console": "1.2.*",
