@@ -61,7 +61,7 @@ class PackageCreator {
 
 		foreach ($blocks as $block)
 		{
-			$this->{"write{$block}"}($package, $directory);
+			$this->{"write{$block}"}($package, $directory, $plain);
 		}
 	}
 
@@ -163,12 +163,12 @@ class PackageCreator {
 	 * @param  string  $directory
 	 * @return void
 	 */
-	public function writeServiceProvider(Package $package, $directory)
+	public function writeServiceProvider(Package $package, $directory, $plain)
 	{
 		// Once we have the service provider stub, we will need to format it and make
 		// the necessary replacements to the class, namespaces, etc. Then we'll be
 		// able to write it out into the package's workbench directory for them.
-		$stub = $this->files->get(__DIR__.'/stubs/provider.php');
+		$stub = $this->getProviderStub($plain);
 
 		$stub = $this->formatPackageStub($stub, $package);
 
@@ -180,6 +180,24 @@ class PackageCreator {
 		$file = $path.'/'.$package->name.'ServiceProvider.php';
 
 		$this->files->put($file, $stub);
+	}
+
+	/**
+	 * Get the stub for a ServiceProvider.
+	 *
+	 * @param  bool    $plain
+	 * @return string
+	 */
+	protected function getProviderStub($plain)
+	{
+		if ($plain)
+		{
+			return $this->files->get(__DIR__.'/stubs/plain.provider.php');
+		}
+		else
+		{
+			return $this->files->get(__DIR__.'/stubs/provider.php');
+		}
 	}
 
 	/**
