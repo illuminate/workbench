@@ -9,7 +9,7 @@ class {{name}}ServiceProvider extends ServiceProvider {
 	 *
 	 * @var bool
 	 */
-	protected $defer = true;
+	protected $defer = false;
 
 	/**
 	 * Register the {{full_package}} service provider.
