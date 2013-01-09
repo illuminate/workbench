@@ -111,13 +111,31 @@ class PackageCreator {
 	 * @param  string  $directory
 	 * @return void
 	 */
-	protected function writeComposerFile(Package $package, $directory)
+	protected function writeComposerFile(Package $package, $directory, $plain)
 	{
-		$stub = $this->files->get(__DIR__.'/stubs/composer.json');
+		$stub = $this->getComposerStub($plain);
 
 		$stub = $this->formatPackageStub($stub, $package);
 
 		$this->files->put($directory.'/composer.json', $stub);
+	}
+
+	/**
+	 * Get the Composer.json stub file contents.
+	 *
+	 * @param  bool    $plain
+	 * @return string
+	 */
+	protected function getComposerStub($plain)
+	{
+		if ($plain)
+		{
+			return $this->files->get(__DIR__.'/stubs/plain.composer.json');
+		}
+		else
+		{
+			return $this->files->get(__DIR__.'/stubs/composer.json');
+		}
 	}
 
 	/**

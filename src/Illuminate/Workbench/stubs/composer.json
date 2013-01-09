@@ -12,7 +12,12 @@
         "illuminate/support": "1.2.*"
     },
     "autoload": {
-        "psr-0": {"{{vendor}}\\{{name}}": "src/"}
+        "classmap": [
+            "src/migrations"
+        ],
+        "psr-0": {
+            "{{vendor}}\\{{name}}": "src/"
+        }
     },
     "minimum-stability": "dev"
 }
