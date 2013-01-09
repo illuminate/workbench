@@ -114,7 +114,7 @@ class WorkbenchMakeCommand extends Command {
 	protected function getOptions()
 	{
 		return array(
-			array('compose', null, InputOption::VALUE_NONE, 'Call "composer update" after workbench creation.'),
+			array('composer', null, InputOption::VALUE_NONE, 'Call "composer update" after workbench creation.'),
 
 			array('plain', null, InputOption::VALUE_NONE, 'Skip creation of Laravel specific directories.'),
 		);
