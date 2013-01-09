@@ -72,11 +72,11 @@ class PackageCreator {
 	 * @param  string  $directory
 	 * @return void
 	 */
-	public function writeSupportFiles(Package $package, $directory)
+	public function writeSupportFiles(Package $package, $directory, $plain)
 	{
 		foreach (array('PhpUnit', 'Travis', 'Composer') as $file)
 		{
-			$this->{"write{$file}File"}($package, $directory);
+			$this->{"write{$file}File"}($package, $directory, $plain);
 		}
 	}
 
