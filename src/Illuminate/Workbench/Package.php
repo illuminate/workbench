@@ -59,8 +59,8 @@ class Package {
 		$this->email = $email;
 		$this->vendor = $vendor;
 		$this->author = $author;
-		$this->lowerName = snake_case($name);
-		$this->lowerVendor = snake_case($vendor);
+		$this->lowerName = snake_case($name, '-');
+		$this->lowerVendor = snake_case($vendor, '-');
 	}
 
 	/**
@@ -70,7 +70,7 @@ class Package {
 	 */
 	public function getFullName()
 	{
-		return $this->vendor.'/'.$this->name;
+		return $this->lowerVendor.'/'.$this->lowerName;
 	}
 
 }
