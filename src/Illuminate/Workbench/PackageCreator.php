@@ -51,7 +51,7 @@ class PackageCreator {
 	 * @param  Illuminate\Workbench\Package  $package
 	 * @param  string  $path
 	 * @param  bool    $plain
-	 * @return void
+	 * @return string
 	 */
 	public function create(Package $package, $path, $plain = false)
 	{
@@ -63,6 +63,8 @@ class PackageCreator {
 		{
 			$this->{"write{$block}"}($package, $directory, $plain);
 		}
+
+		return $directory;
 	}
 
 	/**

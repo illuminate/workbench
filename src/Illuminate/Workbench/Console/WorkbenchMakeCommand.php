@@ -60,9 +60,30 @@ class WorkbenchMakeCommand extends Command {
 		// directories as they are primarily just plain libraries for consumption.
 		$plain = $this->input->getOption('plain');
 
-		$this->creator->create($package, $path, $plain);
+		$workbench = $this->creator->create($package, $path, $plain);
 
 		$this->info('Package workbench created!');
+
+		// If the "compose" option has been specified, we will call composer update for
+		// the workbench so the dependencies will be installed and the classmaps get
+		// generated for the package. This will allow the devs to start migrating.
+		if ($this->input->getOption('compose'))
+		{
+			$this->callComposerUpdate($workbench);
+		}
+	}
+
+	/**
+	 * Call the composer update routine on the path.
+	 *
+	 * @param  string  $path
+	 * @return void
+	 */
+	protected function callComposerUpdate($path)
+	{
+		chdir($path);
+
+		passthru('composer install --dev');
 	}
 
 	/**
@@ -91,6 +112,8 @@ class WorkbenchMakeCommand extends Command {
 	protected function getOptions()
 	{
 		return array(
+			array('compose', null, InputOption::VALUE_NONE, 'Call "composer update" after workbench creation.'),
+
 			array('plain', null, InputOption::VALUE_NONE, 'Skip creation of Laravel specific directories.'),
 		);
 	}
