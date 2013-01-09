@@ -30,6 +30,7 @@ class PackageCreator {
 	protected $blocks = array(
 		'SupportFiles',
 		'SupportDirectories',
+		'PublicDirectory',
 		'TestDirectory',
 		'ServiceProvider'
 	);
@@ -160,6 +161,22 @@ class PackageCreator {
 
 			$this->files->put($path.'/.gitkeep', '');
 		}
+	}
+
+	/**
+	 * Create the public directory for the pacakge.
+	 *
+	 * @param  Illuminate\Workbench\Package  $package
+	 * @param  string  $directory
+	 * @return void
+	 */
+	public function writePublicDirectory(Package $package, $directory, $plain)
+	{
+		if ($plain) return;
+
+		$this->files->makeDirectory($directory.'/public');
+
+		$this->files->put($directory.'/public/.gitkeep', '');
 	}
 
 	/**
