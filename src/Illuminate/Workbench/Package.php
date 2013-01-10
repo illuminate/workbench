@@ -17,7 +17,7 @@ class Package {
 	public $lowerVendor;
 
 	/**
-	 * THe name of the package.
+	 * The name of the package.
 	 *
 	 * @var string
 	 */
@@ -38,7 +38,7 @@ class Package {
 	public $author;
 
 	/**
-	 * The e-mail address of the author.
+	 * The email address of the author.
 	 *
 	 * @var string
 	 */
