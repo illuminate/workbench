@@ -150,7 +150,7 @@ class PackageCreator {
 	 */
 	public function writeSupportDirectories(Package $package, $directory)
 	{
-		foreach (array('config', 'views', 'migrations') as $support)
+		foreach (array('config', 'lang', 'migrations', 'views') as $support)
 		{
 			// Once we create the source directory, we will write an empty file to the
 			// directory so that it will be kept in source control allowing the dev
