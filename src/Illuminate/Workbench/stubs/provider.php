@@ -18,7 +18,7 @@ class {{name}}ServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->package('{{lower_vendor}}/{{lower_name}}', __DIR__.'/../../');
+		$this->package('{{lower_vendor}}/{{lower_name}}');
 	}
 
 	/**
