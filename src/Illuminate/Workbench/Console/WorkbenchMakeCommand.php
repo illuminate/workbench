@@ -64,7 +64,7 @@ class WorkbenchMakeCommand extends Command {
 
 		$this->info('Package workbench created!');
 
-		// If the "compose" option has been specified, we will call composer update for
+		// If the "composer" option has been specified, we will call composer update for
 		// the workbench so the dependencies will be installed and the classmaps get
 		// generated for the package. This will allow the devs to start migrating.
 		if ($this->input->getOption('composer'))
