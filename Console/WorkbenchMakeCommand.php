@@ -81,7 +81,7 @@ class WorkbenchMakeCommand extends Command {
 	{
 		chdir($path);
 
-		passthru('composer install --dev');
+		passthru('composer install');
 	}
 
 	/**

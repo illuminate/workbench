@@ -8,13 +8,13 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0",
-        "illuminate/support": "5.0.*"
+        "php": ">=5.4.0"
     },
     "autoload": {
         "psr-0": {
-            "{{vendor}}\\{{name}}": "src/"
+            "{{vendor}}\\{{name}}": "src/",
+            "illuminate/support": "~5.1@dev"
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "dev"
 }
