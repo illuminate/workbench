@@ -14,6 +14,9 @@
         "illuminate/support": "5.1.*",
         "symfony/finder": "2.7.*"
     },
+    "require-dev":{
+        "illuminate/console":"5.1.*"
+    },
     "autoload": {
         "psr-4": {
             "Illuminate\\Workbench\\": ""
