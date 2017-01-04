@@ -9,7 +9,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "illuminate/support": "5.0.*"
+        "illuminate/support": "5.0.*@dev"
     },
     "autoload": {
         "classmap": [
@@ -19,5 +19,5 @@
             "{{vendor}}\\{{name}}\\": "src/"
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "dev"
 }
